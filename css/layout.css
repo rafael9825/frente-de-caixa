@@ -1,0 +1,33 @@
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+header {
+  background: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: 16px;
+}
+
+header h1 {
+  margin-bottom: 8px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+nav a {
+  color: var(--cor-branco);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}

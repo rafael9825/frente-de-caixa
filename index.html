@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frente de Caixa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Frente de Caixa</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Vender</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="relatorios.html">Relatórios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="lista-produtos">
+      <h2>Produtos</h2>
+      <input type="text" id="busca-produto" placeholder="Buscar produto...">
+      <ul id="produtos"></ul>
+    </section>
+
+    <section id="carrinho">
+      <h2>Venda atual</h2>
+      <ul id="itens-venda"></ul>
+      <p>Total: <span id="total-venda">R$ 0,00</span></p>
+      <button id="limpar-venda">Limpar Venda</button>
+      <button id="finalizar-venda">Finalizar Venda</button>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/vendas.js"></script>
+</body>
+
+</html>

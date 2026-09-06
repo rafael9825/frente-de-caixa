@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Frente de Caixa</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Vender</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="relatorios.html">Relatórios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="add-produto">
+      <h2>Adicionar Produto</h2>
+      <form id="form-produto">
+        <input type="text" id="nome-produto" placeholder="Nome do produto" required>
+        <input type="number" id="preco-produto" placeholder="Preço unitário (R$)" step="0.01" required>
+        <input type="number" id="qtd-produto" placeholder="Quantidade em estoque" required>
+        <input type="text" id="categoria-produto" placeholder="Categoria (ex: Picolés, Bebidas)">
+        <input type="text" id="fornecedor-produto" placeholder="Fornecedor">
+        <input type="file" id="imagem-produto" accept="image/*">
+        <button type="submit">Adicionar</button>
+      </form>
+    </section>
+
+    <section id="lista-produtos">
+      <h2>Produtos Cadastrados</h2>
+      <input type="text" id="busca-produto" placeholder="Buscar produto...">
+      <ul id="produtos"></ul>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/produtos.js"></script>
+</body>
+
+</html>
