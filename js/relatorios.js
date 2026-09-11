@@ -33,10 +33,18 @@ function renderizarRelatorio() {
   const vendasFiltradas = vendas.filter((v) => estaNoPeriodo(v.data, periodoAtual));
 
   let totalGeral = 0;
+  let totalAVista = 0;
+  let totalFiado = 0;
   const produtosVendidos = {};
 
   vendasFiltradas.forEach((venda) => {
     totalGeral += venda.total;
+
+    if (venda.formaPagamento === "fiado") {
+      totalFiado += venda.total;
+    } else {
+      totalAVista += venda.total;
+    }
 
     venda.itens.forEach((item) => {
       if (!produtosVendidos[item.nome]) {
@@ -49,6 +57,10 @@ function renderizarRelatorio() {
 
   document.getElementById("total-periodo").textContent = `R$ ${totalGeral.toFixed(2)}`;
   document.getElementById("qtd-vendas").textContent = vendasFiltradas.length;
+
+  document.getElementById("total-avista").textContent = `R$ ${totalAVista.toFixed(2)}`;
+  document.getElementById("total-fiado").textContent = `R$ ${totalFiado.toFixed(2)}`;
+  document.getElementById("total-geral").textContent = `R$ ${totalGeral.toFixed(2)}`;
 
   const lista = document.getElementById("lista-produtos-vendidos");
   lista.innerHTML = "";

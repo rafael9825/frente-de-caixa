@@ -9,15 +9,22 @@ function renderizarProdutos() {
   produtos
     .filter((produto) => produto.nome.toLowerCase().includes(termo))
     .forEach((produto) => {
-      const item = document.createElement("li");
-      item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)} (${produto.quantidade} em estoque)`;
+      const card = document.createElement("li");
+      card.className = "card-produto";
 
-      const btn = document.createElement("button");
-      btn.textContent = "Adicionar";
-      btn.addEventListener("click", () => adicionarNaVenda(produto.id));
+      const nome = document.createElement("span");
+      nome.className = "nome-card";
+      nome.textContent = produto.nome;
 
-      item.appendChild(btn);
-      lista.appendChild(item);
+      const preco = document.createElement("span");
+      preco.className = "preco-card";
+      preco.textContent = `R$ ${produto.preco.toFixed(2)}`;
+
+      card.appendChild(nome);
+      card.appendChild(preco);
+      card.addEventListener("click", () => adicionarNaVenda(produto.id));
+
+      lista.appendChild(card);
     });
 }
 
@@ -82,6 +89,18 @@ function finalizarVenda() {
     return;
   }
 
+  const eFiado = document.getElementById("venda-fiado").checked;
+  let devedorNome = null;
+
+  if (eFiado) {
+    devedorNome = prompt("Nome do devedor:");
+    if (!devedorNome || devedorNome.trim() === "") {
+      alert("Digite o nome do devedor!");
+      return;
+    }
+    devedorNome = devedorNome.trim();
+  }
+
   let total = 0;
   vendaAtual.forEach((item) => {
     const produto = produtos.find((p) => p.id === item.id);
@@ -90,10 +109,23 @@ function finalizarVenda() {
   });
 
   salvarProdutos(produtos);
-  registrarVenda(vendaAtual, total);
+  registrarVenda(vendaAtual, total, eFiado ? "fiado" : "avista", devedorNome);
+
+  if (eFiado) {
+    const devedores = getDevedores();
+    const novoId = devedores.length > 0 ? devedores[devedores.length - 1].id + 1 : 1;
+    devedores.push({
+      id: novoId,
+      nome: devedorNome,
+      valor: total,
+      data: new Date().toLocaleString("pt-BR"),
+    });
+    salvarDevedores(devedores);
+  }
 
   alert("Venda finalizada!");
   vendaAtual = [];
+  document.getElementById("venda-fiado").checked = false;
   renderizarVenda();
   renderizarProdutos();
 }

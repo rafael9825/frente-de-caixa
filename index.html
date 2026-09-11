@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,6 @@
 
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
   <header>
@@ -20,6 +18,7 @@
     <nav>
       <ul>
         <li><a href="index.html">Vender</a></li>
+        <li><a href="devedores.html">Devedores</a></li>
         <li><a href="produtos.html">Produtos</a></li>
         <li><a href="relatorios.html">Relatórios</a></li>
       </ul>
@@ -37,6 +36,10 @@
       <h2>Venda atual</h2>
       <ul id="itens-venda"></ul>
       <p>Total: <span id="total-venda">R$ 0,00</span></p>
+      <label>
+        <input type="checkbox" id="venda-fiado">
+        Venda fiada (devedor)
+      </label>
       <button id="limpar-venda">Limpar Venda</button>
       <button id="finalizar-venda">Finalizar Venda</button>
     </section>
@@ -45,5 +48,4 @@
   <script src="js/storage.js"></script>
   <script src="js/vendas.js"></script>
 </body>
-
 </html>

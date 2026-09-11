@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produtos</title>
+  <title>Devedores</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,12 +11,11 @@
 
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
   <header>
     <h1>Frente de Caixa</h1>
-        <nav>
+    <nav>
       <ul>
         <li><a href="index.html">Vender</a></li>
         <li><a href="devedores.html">Devedores</a></li>
@@ -28,28 +26,22 @@
   </header>
 
   <main>
-    <section id="add-produto">
-      <h2>Adicionar Produto</h2>
-      <form id="form-produto">
-        <input type="text" id="nome-produto" placeholder="Nome do produto" required>
-        <input type="number" id="preco-produto" placeholder="Preço unitário (R$)" step="0.01" required>
-        <input type="number" id="qtd-produto" placeholder="Quantidade em estoque" required>
-        <input type="text" id="categoria-produto" placeholder="Categoria (ex: Picolés, Bebidas)">
-        <input type="text" id="fornecedor-produto" placeholder="Fornecedor">
-        <input type="file" id="imagem-produto" accept="image/*">
+    <section id="add-devedor">
+      <h2>Adicionar Devedor</h2>
+      <form id="form-devedor">
+        <input type="text" id="nome-devedor" placeholder="Nome do devedor" required>
+        <input type="number" id="valor-devedor" placeholder="Valor devido (R$)" step="0.01" required>
         <button type="submit">Adicionar</button>
       </form>
     </section>
 
-    <section id="lista-produtos">
-      <h2>Produtos Cadastrados</h2>
-      <input type="text" id="busca-produto" placeholder="Buscar produto...">
-      <ul id="produtos"></ul>
+    <section id="lista-devedores">
+      <h2>Devedores</h2>
+      <ul id="devedores"></ul>
     </section>
   </main>
 
   <script src="js/storage.js"></script>
-  <script src="js/produtos.js"></script>
+  <script src="js/devedores.js"></script>
 </body>
-
 </html>
