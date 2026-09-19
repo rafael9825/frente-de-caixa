@@ -9,7 +9,7 @@ function capitalizarNome(texto) {
 }
 
 function renderizarProdutos() {
-  const lista = document.getElementById("produtos");
+  const lista = document.getElementById("lista-produtos-cadastrados");
   const termo = document.getElementById("busca-produto").value.toLowerCase();
   lista.innerHTML = "";
 
@@ -17,13 +17,6 @@ function renderizarProdutos() {
     .filter((produto) => produto.nome.toLowerCase().includes(termo))
     .forEach((produto) => {
       const item = document.createElement("li");
-
-      if (produto.imagem) {
-        const img = document.createElement("img");
-        img.src = produto.imagem;
-        img.className = "foto-produto";
-        item.appendChild(img);
-      }
 
       const texto = document.createElement("span");
       let info = `${produto.nome} - R$ ${produto.preco.toFixed(2)} (${produto.quantidade} em estoque)`;
@@ -99,7 +92,6 @@ document.getElementById("form-produto").addEventListener("submit", (e) => {
   const quantidade = parseInt(document.getElementById("qtd-produto").value);
   const categoria = document.getElementById("categoria-produto").value.trim();
   const fornecedor = document.getElementById("fornecedor-produto").value.trim();
-  const arquivoImagem = document.getElementById("imagem-produto").files[0];
 
   if (nome === "") {
     alert("Digite o nome do produto!");
@@ -116,23 +108,13 @@ document.getElementById("form-produto").addEventListener("submit", (e) => {
     return;
   }
 
-  function salvarProduto(imagemBase64) {
-    const novoId = produtos.length > 0 ? produtos[produtos.length - 1].id + 1 : 1;
+  const novoId = produtos.length > 0 ? produtos[produtos.length - 1].id + 1 : 1;
 
-    produtos.push({ id: novoId, nome, preco, quantidade, categoria, fornecedor, imagem: imagemBase64 || null });
-    salvarProdutos(produtos);
+  produtos.push({ id: novoId, nome, preco, quantidade, categoria, fornecedor });
+  salvarProdutos(produtos);
 
-    renderizarProdutos();
-    document.getElementById("form-produto").reset();
-  }
-
-  if (arquivoImagem) {
-    const leitor = new FileReader();
-    leitor.onload = () => salvarProduto(leitor.result);
-    leitor.readAsDataURL(arquivoImagem);
-  } else {
-    salvarProduto(null);
-  }
+  renderizarProdutos();
+  e.target.reset();
 });
 
 renderizarProdutos();

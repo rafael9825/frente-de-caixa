@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gisa Lima</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <div class="login-card">
+    <svg class="drip" viewBox="0 0 380 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gota" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ff6f61"/>
+          <stop offset="50%" stop-color="#ffb347"/>
+          <stop offset="100%" stop-color="#4ecdc4"/>
+        </linearGradient>
+      </defs>
+      <path d="M0,0 H380 V30 C 320,55 300,20 260,45 C 220,65 200,25 170,50 C 140,65 120,20 90,42 C 60,60 40,25 0,38 Z" fill="url(#gota)"/>
+    </svg>
+
+    <div class="login-content">
+      <div class="wordmark">Gisa Lima</div>
+      <div class="tagline">Picolés · Sorvetes · Bebidas</div>
+
+      <form id="form-login">
+        <div>
+          <label for="usuario">Usuário</label>
+          <input type="text" id="usuario" placeholder="Digite seu usuário" required>
+        </div>
+        <div>
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" placeholder="Digite sua senha" required>
+        </div>
+        <p class="erro" id="mensagem-erro">Usuário ou senha incorretos.</p>
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

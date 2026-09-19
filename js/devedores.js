@@ -3,6 +3,7 @@ let devedores = getDevedores();
 function renderizarDevedores() {
   const lista = document.getElementById("devedores");
   lista.innerHTML = "";
+  let totalGeral = 0;
 
   devedores.forEach((devedor) => {
     const item = document.createElement("li");
@@ -22,7 +23,11 @@ function renderizarDevedores() {
     item.appendChild(btnEditar);
     item.appendChild(btnPagar);
     lista.appendChild(item);
+
+    totalGeral += devedor.valor;
   });
+
+  document.getElementById("total-devedores").textContent = `R$ ${totalGeral.toFixed(2)}`;
 }
 
 function editarDevedor(id) {

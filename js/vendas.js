@@ -113,13 +113,23 @@ function finalizarVenda() {
 
   if (eFiado) {
     const devedores = getDevedores();
-    const novoId = devedores.length > 0 ? devedores[devedores.length - 1].id + 1 : 1;
-    devedores.push({
-      id: novoId,
-      nome: devedorNome,
-      valor: total,
-      data: new Date().toLocaleString("pt-BR"),
-    });
+    const devedorExistente = devedores.find(
+      (d) => d.nome.toLowerCase() === devedorNome.toLowerCase()
+    );
+
+    if (devedorExistente) {
+      devedorExistente.valor += total;
+      devedorExistente.data = new Date().toLocaleString("pt-BR");
+    } else {
+      const novoId = devedores.length > 0 ? devedores[devedores.length - 1].id + 1 : 1;
+      devedores.push({
+        id: novoId,
+        nome: devedorNome,
+        valor: total,
+        data: new Date().toLocaleString("pt-BR"),
+      });
+    }
+
     salvarDevedores(devedores);
   }
 

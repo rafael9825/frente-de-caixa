@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +11,11 @@
 
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
   <header>
     <h1>Frente de Caixa</h1>
-        <nav>
+    <nav>
       <ul>
         <li><a href="index.html">Vender</a></li>
         <li><a href="devedores.html">Devedores</a></li>
@@ -36,7 +34,6 @@
         <input type="number" id="qtd-produto" placeholder="Quantidade em estoque" required>
         <input type="text" id="categoria-produto" placeholder="Categoria (ex: Picolés, Bebidas)">
         <input type="text" id="fornecedor-produto" placeholder="Fornecedor">
-        <input type="file" id="imagem-produto" accept="image/*">
         <button type="submit">Adicionar</button>
       </form>
     </section>
@@ -44,12 +41,11 @@
     <section id="lista-produtos">
       <h2>Produtos Cadastrados</h2>
       <input type="text" id="busca-produto" placeholder="Buscar produto...">
-      <ul id="produtos"></ul>
+      <ul id="lista-produtos-cadastrados"></ul>
     </section>
   </main>
 
   <script src="js/storage.js"></script>
   <script src="js/produtos.js"></script>
 </body>
-
 </html>
