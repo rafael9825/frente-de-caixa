@@ -38,6 +38,16 @@ button:hover {
   background: var(--cor-primaria-escura);
 }
 
+#btn-sair {
+  padding: 8px 14px;
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#btn-sair:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 .estoque-baixo {
   color: #dc2626;
   font-weight: bold;
