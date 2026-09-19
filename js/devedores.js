@@ -72,12 +72,19 @@ document.getElementById("form-devedor").addEventListener("submit", (e) => {
     return;
   }
 
-  const novoId = devedores.length > 0 ? devedores[devedores.length - 1].id + 1 : 1;
-  const dataHora = new Date().toLocaleString("pt-BR");
+  const devedorExistente = devedores.find(
+    (d) => d.nome.toLowerCase() === nome.toLowerCase()
+  );
 
-  devedores.push({ id: novoId, nome, valor, data: dataHora });
+  if (devedorExistente) {
+    devedorExistente.valor += valor;
+    devedorExistente.data = new Date().toLocaleString("pt-BR");
+  } else {
+    const novoId = devedores.length > 0 ? devedores[devedores.length - 1].id + 1 : 1;
+    devedores.push({ id: novoId, nome, valor, data: new Date().toLocaleString("pt-BR") });
+  }
+
   salvarDevedores(devedores);
-
   renderizarDevedores();
   e.target.reset();
 });
