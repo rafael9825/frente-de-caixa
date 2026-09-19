@@ -1,5 +1,10 @@
 const USUARIO_CORRETO = "Gis@Lim@";
-const SENHA_CORRETA = "9825G&S@";
+const SENHA_CORRETA = "9825G&sA";
+
+document.getElementById("avatar").addEventListener("click", () => {
+  document.getElementById("tela-boas-vindas").classList.add("escondido");
+  document.getElementById("form-login").classList.remove("escondido");
+});
 
 document.getElementById("form-login").addEventListener("submit", (e) => {
   e.preventDefault();

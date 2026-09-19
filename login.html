@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gisa Lima</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
@@ -21,10 +22,16 @@
     </svg>
 
     <div class="login-content">
-      <div class="wordmark">Gisa Lima</div>
-      <div class="tagline">Picolés · Sorvetes · Bebidas</div>
 
-      <form id="form-login">
+      <div id="tela-boas-vindas">
+        <button id="avatar" aria-label="Clique para entrar">
+          <span class="avatar-emoji">🍧</span>
+        </button>
+        <div class="wordmark">Gisa Lima</div>
+        <p class="boas-vindas">Seja bem-vinda! Clique pra entrar.</p>
+      </div>
+
+      <form id="form-login" class="escondido">
         <div>
           <label for="usuario">Usuário</label>
           <input type="text" id="usuario" placeholder="Digite seu usuário" required>
@@ -34,8 +41,9 @@
           <input type="password" id="senha" placeholder="Digite sua senha" required>
         </div>
         <p class="erro" id="mensagem-erro">Usuário ou senha incorretos.</p>
-        <button type="submit">Entrar</button>
+        <button type="submit" class="btn-entrar">Entrar</button>
       </form>
+
     </div>
   </div>
 
