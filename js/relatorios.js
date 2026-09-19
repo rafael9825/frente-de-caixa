@@ -1,15 +1,42 @@
 let periodoAtual = "dia";
+let filtroDataInicio = null;
+let filtroDataFim = null;
 
 document.querySelectorAll("#filtro-periodo button").forEach((btn) => {
   btn.addEventListener("click", () => {
     periodoAtual = btn.dataset.periodo;
+    filtroDataInicio = null;
+    filtroDataFim = null;
+    document.getElementById("data-inicio").value = "";
+    document.getElementById("data-fim").value = "";
     renderizarRelatorio();
   });
 });
 
+document.getElementById("aplicar-filtro-datas").addEventListener("click", () => {
+  const inicio = document.getElementById("data-inicio").value;
+  const fim = document.getElementById("data-fim").value;
+
+  if (!inicio || !fim) {
+    alert("Escolha as duas datas!");
+    return;
+  }
+
+  filtroDataInicio = new Date(inicio + "T00:00:00");
+  filtroDataFim = new Date(fim + "T23:59:59");
+  periodoAtual = "personalizado";
+
+  renderizarRelatorio();
+});
+
 function estaNoPeriodo(dataVenda, periodo) {
-  const agora = new Date();
   const data = new Date(dataVenda);
+
+  if (periodo === "personalizado") {
+    return data >= filtroDataInicio && data <= filtroDataFim;
+  }
+
+  const agora = new Date();
 
   if (periodo === "dia") {
     return data.toDateString() === agora.toDateString();
@@ -106,7 +133,7 @@ document.getElementById("exportar-pdf").addEventListener("click", () => {
     });
   });
 
-  const nomesPeriodo = { dia: "Hoje", semana: "Semana", mes: "Mês" };
+  const nomesPeriodo = { dia: "Hoje", semana: "Semana", mes: "Mês", personalizado: "Período Personalizado" };
 
   const janela = window.open("", "_blank");
   janela.document.write(`
