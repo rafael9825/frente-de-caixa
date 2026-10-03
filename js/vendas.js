@@ -118,21 +118,19 @@ function finalizarVenda() {
     );
 
     const itensComprados = vendaAtual.map((item) => `${item.nome} x${item.qtd}`).join(", ");
+    const dataHora = new Date().toLocaleString("pt-BR");
 
     if (devedorExistente) {
       devedorExistente.valor += total;
-      devedorExistente.data = new Date().toLocaleString("pt-BR");
-      devedorExistente.itens = devedorExistente.itens
-        ? `${devedorExistente.itens}; ${itensComprados}`
-        : itensComprados;
+      if (!devedorExistente.historico) devedorExistente.historico = [];
+      devedorExistente.historico.push({ data: dataHora, itens: itensComprados, valor: total });
     } else {
       const novoId = devedores.length > 0 ? devedores[devedores.length - 1].id + 1 : 1;
       devedores.push({
         id: novoId,
         nome: devedorNome,
         valor: total,
-        data: new Date().toLocaleString("pt-BR"),
-        itens: itensComprados,
+        historico: [{ data: dataHora, itens: itensComprados, valor: total }],
       });
     }
 

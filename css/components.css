@@ -38,16 +38,6 @@ button:hover {
   background: var(--cor-primaria-escura);
 }
 
-#btn-sair {
-  padding: 8px 14px;
-  margin-top: 0;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-#btn-sair:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
 .estoque-baixo {
   color: #dc2626;
   font-weight: bold;
@@ -140,4 +130,22 @@ button:hover {
 .card-produto .preco-card {
   color: var(--cor-primaria);
   font-weight: bold;
+}
+
+.item-devedor {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.linha-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.linha-detalhe {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
 }

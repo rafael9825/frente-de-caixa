@@ -7,9 +7,13 @@ function renderizarDevedores() {
 
   devedores.forEach((devedor) => {
     const item = document.createElement("li");
+    item.classList.add("item-devedor");
 
-    const texto = document.createElement("span");
-    texto.textContent = `${devedor.nome} - R$ ${devedor.valor.toFixed(2)} - ${devedor.data}${devedor.itens ? " - " + devedor.itens : ""}`;
+    const linhaPrincipal = document.createElement("div");
+    linhaPrincipal.classList.add("linha-principal");
+
+    const nomeValor = document.createElement("span");
+    nomeValor.textContent = `${devedor.nome} - R$ ${devedor.valor.toFixed(2)}`;
 
     const btnEditar = document.createElement("button");
     btnEditar.textContent = "Editar";
@@ -19,11 +23,21 @@ function renderizarDevedores() {
     btnPagar.textContent = "Pagar";
     btnPagar.addEventListener("click", () => pagarDevedor(devedor.id));
 
-    item.appendChild(texto);
-    item.appendChild(btnEditar);
-    item.appendChild(btnPagar);
-    lista.appendChild(item);
+    linhaPrincipal.appendChild(nomeValor);
+    linhaPrincipal.appendChild(btnEditar);
+    linhaPrincipal.appendChild(btnPagar);
 
+    item.appendChild(linhaPrincipal);
+
+    const historico = devedor.historico || [];
+    historico.forEach((compra) => {
+      const linhaDetalhe = document.createElement("div");
+      linhaDetalhe.classList.add("linha-detalhe");
+      linhaDetalhe.textContent = `${compra.data}${compra.itens ? " - " + compra.itens : ""} - R$ ${compra.valor.toFixed(2)}`;
+      item.appendChild(linhaDetalhe);
+    });
+
+    lista.appendChild(item);
     totalGeral += devedor.valor;
   });
 
@@ -72,16 +86,23 @@ document.getElementById("form-devedor").addEventListener("submit", (e) => {
     return;
   }
 
+  const dataHora = new Date().toLocaleString("pt-BR");
   const devedorExistente = devedores.find(
     (d) => d.nome.toLowerCase() === nome.toLowerCase()
   );
 
   if (devedorExistente) {
     devedorExistente.valor += valor;
-    devedorExistente.data = new Date().toLocaleString("pt-BR");
+    if (!devedorExistente.historico) devedorExistente.historico = [];
+    devedorExistente.historico.push({ data: dataHora, itens: null, valor });
   } else {
     const novoId = devedores.length > 0 ? devedores[devedores.length - 1].id + 1 : 1;
-    devedores.push({ id: novoId, nome, valor, data: new Date().toLocaleString("pt-BR") });
+    devedores.push({
+      id: novoId,
+      nome,
+      valor,
+      historico: [{ data: dataHora, itens: null, valor }],
+    });
   }
 
   salvarDevedores(devedores);
