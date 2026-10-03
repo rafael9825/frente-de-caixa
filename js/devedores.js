@@ -9,7 +9,7 @@ function renderizarDevedores() {
     const item = document.createElement("li");
 
     const texto = document.createElement("span");
-    texto.textContent = `${devedor.nome} - R$ ${devedor.valor.toFixed(2)} - ${devedor.data}`;
+    texto.textContent = `${devedor.nome} - R$ ${devedor.valor.toFixed(2)} - ${devedor.data}${devedor.itens ? " - " + devedor.itens : ""}`;
 
     const btnEditar = document.createElement("button");
     btnEditar.textContent = "Editar";

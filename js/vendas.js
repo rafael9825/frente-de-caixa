@@ -117,9 +117,14 @@ function finalizarVenda() {
       (d) => d.nome.toLowerCase() === devedorNome.toLowerCase()
     );
 
+    const itensComprados = vendaAtual.map((item) => `${item.nome} x${item.qtd}`).join(", ");
+
     if (devedorExistente) {
       devedorExistente.valor += total;
       devedorExistente.data = new Date().toLocaleString("pt-BR");
+      devedorExistente.itens = devedorExistente.itens
+        ? `${devedorExistente.itens}; ${itensComprados}`
+        : itensComprados;
     } else {
       const novoId = devedores.length > 0 ? devedores[devedores.length - 1].id + 1 : 1;
       devedores.push({
@@ -127,6 +132,7 @@ function finalizarVenda() {
         nome: devedorNome,
         valor: total,
         data: new Date().toLocaleString("pt-BR"),
+        itens: itensComprados,
       });
     }
 
