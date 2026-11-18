@@ -1,0 +1,399 @@
+.pagina-vendas {
+  --v-fundo: #f4f1ec;
+  --v-escuro: #1b1b3a;
+  --v-roxo: #3a1c5a;
+  --v-coral: #ff6f61;
+  --v-laranja: #ffb347;
+  --v-verde: #0f9d8a;
+  --v-texto: #2b2b3c;
+  --v-suave: #8a8aa0;
+  --v-borda: #e8e4dc;
+  background: var(--v-fundo);
+  color: var(--v-texto);
+}
+
+/* Cabeçalho */
+.pagina-vendas header {
+  background: linear-gradient(135deg, var(--v-escuro), var(--v-roxo));
+  box-shadow: 0 4px 20px rgba(27, 27, 58, 0.25);
+  padding: 14px 28px;
+}
+
+.pagina-vendas header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.pagina-vendas nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagina-vendas nav li {
+  padding: 0;
+  border: none;
+}
+
+.pagina-vendas nav a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.pagina-vendas nav a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.pagina-vendas nav a.ativo {
+  background: linear-gradient(135deg, var(--v-coral), var(--v-laranja));
+  color: #fff;
+}
+
+.pagina-vendas #btn-sair {
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-size: 14px;
+}
+
+.pagina-vendas #btn-sair:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Layout */
+.pagina-vendas main {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+  gap: 24px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 84px auto 0;
+  padding: 28px 24px;
+}
+
+.pagina-vendas section {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(27, 27, 58, 0.07);
+  min-width: 0;
+  flex: none;
+}
+
+.pagina-vendas h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--v-escuro);
+  margin-bottom: 16px;
+}
+
+/* Busca */
+.pagina-vendas #busca-produto {
+  padding: 14px 20px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: var(--v-fundo);
+  margin-bottom: 20px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.pagina-vendas #busca-produto:focus {
+  border-color: var(--v-coral);
+  background: #fff;
+}
+
+/* Produtos */
+.pagina-vendas #produtos {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.pagina-vendas .card-produto {
+  background: #fff;
+  border: 1px solid var(--v-borda);
+  border-radius: 16px;
+  padding: 18px 12px;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.pagina-vendas .card-produto:hover {
+  transform: translateY(-3px);
+  border-color: var(--v-coral);
+  box-shadow: 0 10px 24px rgba(255, 111, 97, 0.18);
+  background: #fff;
+}
+
+.pagina-vendas .card-produto:active {
+  transform: scale(0.97);
+}
+
+.pagina-vendas .card-produto .nome-card {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--v-escuro);
+}
+
+.pagina-vendas .card-produto .preco-card {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--v-coral);
+}
+
+.pagina-vendas .card-produto .estoque-card {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--v-suave);
+  background: var(--v-fundo);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.pagina-vendas .card-produto .estoque-card.baixo {
+  color: #b45309;
+  background: #fff3dc;
+}
+
+.pagina-vendas .card-produto .estoque-card.esgotado {
+  color: #b91c1c;
+  background: #fde8e8;
+}
+
+.pagina-vendas .card-produto.sem-estoque {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.pagina-vendas .card-produto.sem-estoque:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--v-borda);
+}
+
+.pagina-vendas .foto-card {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Carrinho */
+.pagina-vendas #carrinho {
+  position: sticky;
+  top: 100px;
+}
+
+.pagina-vendas #itens-venda {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.pagina-vendas #itens-venda:empty::before {
+  content: "Clique num produto para adicionar à venda";
+  display: block;
+  text-align: center;
+  color: var(--v-suave);
+  font-size: 14px;
+  padding: 28px 8px;
+}
+
+.pagina-vendas .item-carrinho {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--v-borda);
+}
+
+.pagina-vendas .item-carrinho .nome-item {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.pagina-vendas .item-carrinho .preco-item {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--v-escuro);
+}
+
+.pagina-vendas .btn-remover {
+  margin: 0;
+  padding: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fdecea;
+  color: #d64545;
+  font-size: 12px;
+  line-height: 26px;
+}
+
+.pagina-vendas .btn-remover:hover {
+  background: #d64545;
+  color: #fff;
+}
+
+.pagina-vendas .linha-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px dashed var(--v-borda);
+  font-size: 15px;
+  color: var(--v-suave);
+}
+
+.pagina-vendas #total-venda {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--v-escuro);
+}
+
+/* Troco */
+.pagina-vendas .bloco-troco {
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--v-fundo);
+  border-radius: 14px;
+}
+
+.pagina-vendas .bloco-troco label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--v-suave);
+  margin-bottom: 6px;
+}
+
+.pagina-vendas .bloco-troco input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 18px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: #fff;
+  outline: none;
+}
+
+.pagina-vendas .bloco-troco input:focus {
+  border-color: var(--v-verde);
+}
+
+.pagina-vendas .bloco-troco input:disabled {
+  opacity: 0.5;
+}
+
+.pagina-vendas .linha-troco {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--v-suave);
+}
+
+.pagina-vendas #troco-venda {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--v-verde);
+}
+
+.pagina-vendas #troco-venda.faltando {
+  color: #d64545;
+  font-size: 16px;
+}
+
+/* Fiado e botões */
+.pagina-vendas .opcao-fiado {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff4f2;
+  color: #b4443a;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.pagina-vendas .opcao-fiado input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--v-coral);
+}
+
+.pagina-vendas .acoes-venda {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pagina-vendas .acoes-venda button {
+  margin: 0;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.pagina-vendas #limpar-venda {
+  background: #fff;
+  color: var(--v-suave);
+  border: 2px solid var(--v-borda);
+}
+
+.pagina-vendas #limpar-venda:hover {
+  background: var(--v-fundo);
+}
+
+.pagina-vendas #finalizar-venda {
+  background: linear-gradient(135deg, var(--v-verde), #35c2ad);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(15, 157, 138, 0.3);
+}
+
+.pagina-vendas #finalizar-venda:hover {
+  background: linear-gradient(135deg, #0c8a79, #2eb5a0);
+}
+
+.pagina-vendas #finalizar-venda:active {
+  transform: scale(0.98);
+}
+
+/* Celular */
+@media (max-width: 860px) {
+  .pagina-vendas header {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pagina-vendas main {
+    grid-template-columns: 1fr;
+    margin-top: 120px;
+    padding: 16px;
+  }
+
+  .pagina-vendas #carrinho {
+    position: static;
+  }
+}

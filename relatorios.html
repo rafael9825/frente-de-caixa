@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/auth-guard.js"></script>
 </head>
-
 <body>
 
   <header>
@@ -60,16 +58,29 @@
       <p><strong>Total Geral: <span id="total-geral">R$ 0,00</span></strong></p>
     </section>
 
+    <section id="categorias">
+      <h2>Bebidas x Picolés</h2>
+      <p>Bebidas: <span id="qtd-bebidas">0</span> un. - <span id="total-bebidas">R$ 0,00</span></p>
+      <p>Picolés: <span id="qtd-picoles">0</span> un. - <span id="total-picoles">R$ 0,00</span></p>
+      <p>Sem categoria: <span id="qtd-outros">0</span> un. - <span id="total-outros">R$ 0,00</span></p>
+    </section>
+
     <section id="produtos-vendidos">
       <h2>Produtos Vendidos</h2>
       <ul id="lista-produtos-vendidos"></ul>
+    </section>
+
+    <section id="backup">
+      <h2>Backup</h2>
+      <button id="baixar-backup">Baixar backup agora</button>
+      <p>Restaurar de um arquivo:</p>
+      <input type="file" id="arquivo-backup" accept=".json">
+      <button id="restaurar-backup">Restaurar backup</button>
     </section>
   </main>
 
   <script src="js/storage.js"></script>
   <script src="js/backup.js"></script>
   <script src="js/relatorios.js"></script>
-  
 </body>
-
 </html>

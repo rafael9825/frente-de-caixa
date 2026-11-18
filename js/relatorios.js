@@ -55,14 +55,38 @@ function estaNoPeriodo(dataVenda, periodo) {
   return false;
 }
 
+function grupoDoItem(item, produtosCadastrados) {
+  let categoria = item.categoria;
+
+  if (!categoria) {
+    const produto = produtosCadastrados.find((p) => p.id === item.id);
+    categoria = produto ? produto.categoria : "";
+  }
+
+  const texto = (categoria || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  if (texto.includes("bebida") || texto.includes("refri")) return "bebidas";
+  if (texto.includes("picol")) return "picoles";
+  return "outros";
+}
+
 function renderizarRelatorio() {
   const vendas = getVendas();
+  const produtosCadastrados = getProdutos();
   const vendasFiltradas = vendas.filter((v) => estaNoPeriodo(v.data, periodoAtual));
 
   let totalGeral = 0;
   let totalAVista = 0;
   let totalFiado = 0;
   const produtosVendidos = {};
+  const grupos = {
+    bebidas: { qtd: 0, total: 0 },
+    picoles: { qtd: 0, total: 0 },
+    outros: { qtd: 0, total: 0 },
+  };
 
   vendasFiltradas.forEach((venda) => {
     totalGeral += venda.total;
@@ -79,6 +103,10 @@ function renderizarRelatorio() {
       }
       produtosVendidos[item.nome].qtd += item.qtd;
       produtosVendidos[item.nome].total += item.preco * item.qtd;
+
+      const grupo = grupoDoItem(item, produtosCadastrados);
+      grupos[grupo].qtd += item.qtd;
+      grupos[grupo].total += item.preco * item.qtd;
     });
   });
 
@@ -88,6 +116,13 @@ function renderizarRelatorio() {
   document.getElementById("total-avista").textContent = `R$ ${totalAVista.toFixed(2)}`;
   document.getElementById("total-fiado").textContent = `R$ ${totalFiado.toFixed(2)}`;
   document.getElementById("total-geral").textContent = `R$ ${totalGeral.toFixed(2)}`;
+
+  document.getElementById("qtd-bebidas").textContent = grupos.bebidas.qtd;
+  document.getElementById("total-bebidas").textContent = `R$ ${grupos.bebidas.total.toFixed(2)}`;
+  document.getElementById("qtd-picoles").textContent = grupos.picoles.qtd;
+  document.getElementById("total-picoles").textContent = `R$ ${grupos.picoles.total.toFixed(2)}`;
+  document.getElementById("qtd-outros").textContent = grupos.outros.qtd;
+  document.getElementById("total-outros").textContent = `R$ ${grupos.outros.total.toFixed(2)}`;
 
   const lista = document.getElementById("lista-produtos-vendidos");
   lista.innerHTML = "";
